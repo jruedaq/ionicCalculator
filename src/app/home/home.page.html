@@ -9,9 +9,9 @@
   </ion-row>
 
   <ion-row class="screen">
-    <ion-row>Math ERROR</ion-row>
-    <ion-row>[AC]     : Cancel</ion-row>
-    <ion-row>[<-][->] : Goto</ion-row>
+    <ion-row>{{displayL1}}<b class="pulse">|</b></ion-row>
+    <ion-row>{{displayL2}}</ion-row>
+    <ion-row class="{{displayL3 !== '[AC] : Cancel' ? 'right' : ''}}">{{displayL3}}</ion-row>
   </ion-row>
 
   <ion-row>
@@ -23,30 +23,45 @@
 
   <ion-row>
     <ion-col size="3">
-      <ion-button
-        size="large"
-        expand="full">
+      <ion-button size="large" expand="full" (click)="displayControl('sin(', true)">
+        sen
+      </ion-button>
+    </ion-col>
+    <ion-col size="3">
+      <ion-button size="large" expand="full" (click)="displayControl('cos(', true)">
+        cos
+      </ion-button>
+    </ion-col>
+    <ion-col size="3">
+      <ion-button size="large" expand="full" (click)="displayControl('tan(', true)">
+        tan
+      </ion-button>
+    </ion-col>
+    <ion-col size="3">
+      <ion-button size="large" expand="full" (click)="displayControl('^')">
+        X<sup>■</sup>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="3">
+      <ion-button size="large" expand="full" (click)="clear(true)">
         AC
       </ion-button>
     </ion-col>
     <ion-col size="3">
-      <ion-button
-        size="large"
-        expand="full">
+      <ion-button size="large" expand="full" (click)="clear(false)">
         C
       </ion-button>
     </ion-col>
     <ion-col size="3">
-      <ion-button
-        size="large"
-        expand="full">
-        %
+      <ion-button size="large" expand="full" (click)="displayControl('sqrt(', true)">
+        √
       </ion-button>
     </ion-col>
     <ion-col size="3">
-      <ion-button
-        size="large"
-        expand="full">
+      <ion-button size="large" expand="full" (click)="displayControl('/')">
         /
       </ion-button>
     </ion-col>
@@ -54,29 +69,22 @@
 
   <ion-row>
     <ion-col size="3">
-      <ion-button
-        size="large"
-        expand="full">7
+      <ion-button size="large" expand="full" (click)="displayControl('7')">
+        7
       </ion-button>
     </ion-col>
     <ion-col size="3">
-      <ion-button
-        size="large"
-        expand="full">
+      <ion-button size="large" expand="full" (click)="displayControl('8')">
         8
       </ion-button>
     </ion-col>
     <ion-col size="3">
-      <ion-button
-        size="large"
-        expand="full">
+      <ion-button size="large" expand="full" (click)="displayControl('9')">
         9
       </ion-button>
     </ion-col>
     <ion-col size="3">
-      <ion-button
-        size="large"
-        expand="full">
+      <ion-button size="large" expand="full" (click)="displayControl('×')">
         <ion-icon size="large" name="close"></ion-icon>
       </ion-button>
     </ion-col>
@@ -84,30 +92,22 @@
 
   <ion-row>
     <ion-col size="3">
-      <ion-button
-        size="large"
-        expand="full">
+      <ion-button size="large" expand="full" (click)="displayControl('4')">
         4
       </ion-button>
     </ion-col>
     <ion-col size="3">
-      <ion-button
-        size="large"
-        expand="full">
+      <ion-button size="large" expand="full" (click)="displayControl('5')">
         5
       </ion-button>
     </ion-col>
     <ion-col size="3">
-      <ion-button
-        size="large"
-        expand="full">
+      <ion-button size="large" expand="full" (click)="displayControl('6')">
         6
       </ion-button>
     </ion-col>
     <ion-col size="3">
-      <ion-button
-        size="large"
-        expand="full">
+      <ion-button size="large" expand="full" (click)="displayControl('-')">
         <ion-icon size="large" name="remove"></ion-icon>
       </ion-button>
     </ion-col>
@@ -115,30 +115,22 @@
 
   <ion-row>
     <ion-col size="3">
-      <ion-button
-        size="large"
-        expand="full">
+      <ion-button size="large" expand="full" (click)="displayControl('1')">
         1
       </ion-button>
     </ion-col>
     <ion-col size="3">
-      <ion-button
-        size="large"
-        expand="full">
+      <ion-button size="large" expand="full" (click)="displayControl('2')">
         2
       </ion-button>
     </ion-col>
     <ion-col size="3">
-      <ion-button
-        size="large"
-        expand="full">
+      <ion-button size="large" expand="full" (click)="displayControl('3')">
         3
       </ion-button>
     </ion-col>
     <ion-col size="3">
-      <ion-button
-        size="large"
-        expand="full">
+      <ion-button size="large" expand="full" (click)="displayControl('+')">
         <ion-icon size="large" name="add"></ion-icon>
       </ion-button>
     </ion-col>
@@ -146,31 +138,22 @@
 
   <ion-row>
     <ion-col size="3">
-      <ion-button
-        size="large"
-        expand="full"
-      >
-        +/-
+      <ion-button size="large" expand="full" (click)="parenthesisController()">
+        ( )
       </ion-button>
     </ion-col>
     <ion-col size="3">
-      <ion-button
-        size="large"
-        expand="full">
+      <ion-button size="large" expand="full" (click)="displayControl('0')">
         0
       </ion-button>
     </ion-col>
     <ion-col size="3">
-      <ion-button
-        size="large"
-        expand="full">
+      <ion-button size="large" expand="full" (click)="displayControl('.')">
         .
       </ion-button>
     </ion-col>
     <ion-col size="3">
-      <ion-button
-        size="large"
-        expand="full">
+      <ion-button size="large" expand="full" (click)="calculate()">
         =
       </ion-button>
     </ion-col>
